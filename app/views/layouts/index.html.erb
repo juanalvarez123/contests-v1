@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <title>SUPER VOICES</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Template by Colorlib"/>
+  <meta name="keywords" content="HTML, CSS, JavaScript, PHP"/>
+  <meta name="author" content="Colorlib"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="shortcut icon" href="<%= image_path('index/images/SUPER_VOICES_ICON.png') %>"/>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,700i,900|Montserrat:400,700|PT+Serif' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" type="text/css" href='<%= stylesheet_path('index/css/clear.css') %>'/>
+  <link rel="stylesheet" type="text/css" href='<%= stylesheet_path('index/css/common.css') %>'/>
+  <link rel="stylesheet" type="text/css" href='<%= stylesheet_path('index/css/font-awesome.min.css') %>'/>
+  <link rel="stylesheet" type="text/css" href='<%= stylesheet_path('index/css/carouFredSel.css') %>'/>
+  <link rel="stylesheet" type="text/css" href='<%= stylesheet_path('index/css/prettyPhoto.css') %>'/>
+  <link rel="stylesheet" type="text/css" href='<%= stylesheet_path('index/css/sm-clean.css') %>'/>
+
+  <%= stylesheet_link_tag 'index/style', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <!--[if lt IE 9]>
+  <script src='<%= javascript_path('index/js/html5.js') %>'></script>
+  <![endif]-->
+
+</head>
+<body>
+
+<!-- Preloader Gif -->
+<table class="doc-loader">
+  <tr>
+    <td>
+      <img src="<%= image_path('index/images/loading.gif') %>" alt="Cargando..."/>
+    </td>
+  </tr>
+</table>
+
+<!-- Menu -->
+<div class="menu-wrapper center-relative">
+  <nav id="header-main-menu">
+    <div class="mob-menu">MENU</div>
+    <ul class="main-menu sm sm-clean">
+      <li><a href="#home">Inicio</a></li>
+      <li><a href="#services">Servicios</a></li>
+      <li><a href="#skills">Ventajas</a></li>
+      <li><a href="#about">Nosotros</a></li>
+      <li><a href="/signin">Registrate</a></li>
+      <li><a href="/login">Inicia sesión</a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- Home -->
+<div id="home" class="section intro-page">
+  <div class="block content-1170 center-relative center-text">
+    <img class="top-logo" src="<%= image_path('index/images/SUPER_VOICES_LOGO.png') %>"/>
+    <br>
+    <h1 class="big-title">Encuentra la voz que necesitas</h1>
+    <h2 class="title-desc">
+      Miles de personas en todo el mundo están grabando por ti<br><br>
+      <a href="/signin" class="border-dark btn btn-primary" target="_blank">Registrate aquí!</a>
+    </h2>
+  </div>
+</div>
+
+<!-- Service -->
+<div id="services" class="section">
+  <div class="block content-1170 center-relative">
+    <div class="section-title-holder left">
+      <div class="section-num">
+        <span>01</span>
+      </div>
+      <h2 class="entry-title">Servicios</h2>
+    </div>
+    <div class="section-content-holder right">
+      <div class="content-wrapper">
+        <script>
+          var slider1_speed = "500";
+          var slider1_auto = "false";
+          var slider1_hover = "true";
+        </script>
+        <div class="image-slider-wrapper relative service slider1">
+          <ul id="slider1" class="image-slider slides">
+            <li>
+              <div class="service-holder ">
+                <img src="<%= image_path('index/demo-images/icon_01.png') %>">
+                <div class="service-content-holder">
+                  <div class="service-title">CONCURSOS</div>
+                  <div class="service-content">
+                    Registra tus concursos, busca la voz que siempre has deseado, elige a los
+                    ganadores y publica los resultados.<br/>
+                  </div>
+                </div>
+              </div>
+              <div class="service-holder ">
+                <img src="<%= image_path('index/demo-images/icon_02.png') %>">
+                <div class="service-content-holder">
+                  <div class="service-title">USUARIOS</div>
+                  <div class="service-content">
+                    Administra tu empresa con las personas que deseas, asignales permisos y permite
+                    que ellos administren tu plataforma.<br/>
+                  </div>
+                </div>
+              </div>
+              <div class="service-holder ">
+                <img src="<%= image_path('index/demo-images/icon_03.png') %>">
+                <div class="service-content-holder">
+                  <div class="service-title">WEB</div>
+                  <div class="service-content">
+                    Accede desde cualquier lugar y en cualquier momento.<br/>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    <div class='clear'></div>
+  </div>
+</div>
+
+<!-- Skills -->
+<div id="skills" class="section">
+  <div class="block content-1170 center-relative">
+    <div class="section-title-holder right">
+      <div class="section-num">
+        <span>02</span>
+      </div>
+      <h2 class="entry-title">Ventajas</h2>
+    </div>
+    <div class="section-content-holder left">
+      <div class="content-wrapper">
+        <p>Somos una de las empresas con mayor crecimiento en los últimos años. Aprovecha a los
+          miles de usuarios que acceden a nuestra plataforma, todos ellos estarán disponibles para
+          participar en los concursos publicados.<br/><br/>
+          Nuestros números en último año:</p>
+        <br>
+        <div class="progress_bar ">
+          <div class="progress_bar_field_holder" style="width: 90%;">
+            <div class="progress_bar_title" style="color: #55B286">Procesamiento</div>
+            <div class="progress_bar_percent_text" style="color: #55B286">90%</div>
+            <div class="progress_bar_field_perecent" style="background-color:#32DB8A;"></div>
+          </div>
+        </div>
+        <div class="progress_bar ">
+          <div class="progress_bar_field_holder" style="width:80%;">
+            <div class="progress_bar_title" style="color: #E3A536">Últimas tecnologías</div>
+            <div class="progress_bar_percent_text" style="color: #E3A536">80%</div>
+            <div class="progress_bar_field_perecent" style="background-color:#FFBB42;"></div>
+          </div>
+        </div>
+        <div class="progress_bar ">
+          <div class="progress_bar_field_holder" style="width:20%;">
+            <div class="progress_bar_title" style="color: #B24564">Caidas</div>
+            <div class="progress_bar_percent_text" style="color: #B24564">5%</div>
+            <div class="progress_bar_field_perecent" style="background-color:#E74C78;"></div>
+          </div>
+        </div>
+        <div class="progress_bar ">
+          <div class="progress_bar_field_holder" style="width:85%;">
+            <div class="progress_bar_title" style="color: #468ac7">Experiencia de usuario</div>
+            <div class="progress_bar_percent_text" style="color: #468ac7">85%</div>
+            <div class="progress_bar_field_perecent" style="background-color:#4C9EE7;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<!-- About -->
+<div id="about" class="section">
+  <div class="block content-1170 center-relative">
+    <div class="section-title-holder left">
+      <div class="section-num">
+        <span>03</span>
+      </div>
+      <h2 class="entry-title">Nosotros</h2>
+    </div>
+    <div class="section-content-holder right">
+      <div class="content-wrapper">
+        <div class="content-wrapper">
+          Somos una empresa Colombiana, ubicada en la ciudad de Bogotá.<br/><br/>
+          Creemos firmemente en brindar los mejores servicios a las personas, hacer su vida mucho
+          más facil.<br/><br/>
+          Nuestro objetivo es que encuentres la voz que deseas y para eso contamos con los mejores
+          ingenieros, profesionales en medios de comunicación y todas las personas trabajando para
+          ti.
+        </div>
+        <div class="clear"></div>
+        <br>
+      </div>
+
+      <div class="full-width ">
+        <script>
+          var aboutImage_speed = "500";
+          var aboutImage_auto = "false";
+          var aboutImage_hover = "true";
+        </script>
+        <div class="image-slider-wrapper relative img aboutImage">
+          <div class="caroufredsel_wrapper">
+            <ul id="aboutImage" class="image-slider slides">
+              <li><img src="https://source.unsplash.com/yFbyvpEGHFQ/600x400"></li>
+              <li><img src="https://source.unsplash.com/73o_FzZ5x-w/600x400"></li>
+              <li><img src="https://source.unsplash.com/byW_4p0EKMA/600x400"></li>
+            </ul>
+          </div>
+          <div class="clear"></div>
+        </div>
+
+        <script>
+          var team1_speed = "500";
+          var team1_auto = "false";
+          var team1_hover = "true";
+        </script>
+        <div class="image-slider-wrapper relative team team1">
+          <a id="team1_next" class="image_slider_next" href="#"></a>
+          <div class="caroufredsel_wrapper">
+            <ul id="team1" class="image-slider slides">
+              <li>
+                <div class="member-content-holder">
+                  <h4 class="member-name">Jesus Insuasty</h4>
+                  <p class="member-position">Software developer</p>
+                  <div class="member-content">
+                    Jesus está encargado del diseño y programación del sitio web.<br><br>
+                    Es quien administra los servicios de audio y verifica que estén disponibles en
+                    el momento en que los usuarios lo necesitan.
+                  </div>
+                </div>
+                <div class="member-image-holder">
+                  <img src="https://source.unsplash.com/WZbHIyrtkCI/600x600">
+                </div>
+                <div class="clear"></div>
+              </li>
+            </ul>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>   <!-- end full-width div -->
+
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer content-1170 center-relative">
+    <ul>
+      <li class="copyright-footer">
+        © 2018 All rights reserved. | Boxus Template by
+        <a href="https://colorlib.com" target="_blank">Colorlib</a>
+      </li>
+      <li class="social-footer">
+        <a href="https://github.com/ISIS4426-Desarrollo-Soluciones-Cloud/Grupo03" target="_blank"><span class="fa fa-github"></span></a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+<!--Load JavaScript-->
+<script type='text/javascript' src='<%= javascript_path('index/js/jquery.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/jquery.sticky-kit.min.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/jquery.smartmenus.min.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/jquery.sticky.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/jquery.dryMenu.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/isotope.pkgd.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/jquery.carouFredSel-6.2.0-packed.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/jquery.mousewheel.min.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/jquery.touchSwipe.min.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/jquery.easing.1.3.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/imagesloaded.pkgd.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/jquery.prettyPhoto.js') %>'></script>
+<script type='text/javascript' src='<%= javascript_path('index/js/main.js') %>'></script>
+</body>
+</html>

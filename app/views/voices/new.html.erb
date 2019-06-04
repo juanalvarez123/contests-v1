@@ -1,0 +1,162 @@
+<table align="center">
+  <tr>
+    <td align="center"><img src="<%= image_path(@contest.banner_image_name) %>"/></td>
+    <td align="center">
+      <h1><%= @contest.name %></h1><br/>
+      <h2 align="center">Premio: <%= number_to_currency(@contest.prize_amount) %></h2>
+    </td>
+  </tr>
+</table>
+
+<h3>Envianos tu voz con el siguiente mensaje: "<%= @contest.contest_text %>"</h3>
+<h4>Ten en cuenta: <%= @contest.recommendations %>. El concurso tiene una vigencia desde el <%= l @contest.date_init, format: "%d de %B de %Y a la(s) %I:%M %P %Z" %> hasta el <%= l @contest.date_end, format: "%d de %B de %Y a la(s) %I:%M %P %Z" %></h4>
+
+<% if !@audios.blank? %>
+  <p>Estos son los audios que se han subido hasta el momento:</p>
+  <table>
+    <tr>
+      <td style="width: 25%; text-align: center"><strong>Nombres</strong></td>
+      <td style="width: 25%; text-align: center"><strong>Apellidos</strong></td>
+      <td style="width: 25%; text-align: center"><strong>Fecha de subida</strong></td>
+      <td style="width: 25%; text-align: center"><strong>Audio</strong></td>
+    </tr>
+    <% @audios.each do |audio| %>
+      <tr>
+        <td><%= audio.participant.first_name %></td>
+        <td><%= audio.participant.last_name %></td>
+        <td><%= l DateService.get_created_at_COT(audio.created_at), format: "%d de %B de %Y a la(s) %I:%M %P COT" %></td>
+        <td>
+          <audio src="<%= audio_path('converted/' + audio.converted_name) %>" type="audio/mpeg" controls controlsList="nodownload">
+            Tu explorador web no soporta reproducción de audios
+          </audio>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="3">
+        <select id="selectOpt" onchange="getAudios()">
+          <% @limits_per_page.each do |limit| %>
+            <% if limit.to_s == @limit.to_s %>
+              <option value="<%= limit %>" selected><%= limit %></option>
+            <% else %>
+              <option value="<%= limit %>"><%= limit %></option>
+            <% end %>
+          <% end %>
+        </select>
+        &nbsp;
+        <% @pages.each do |page| %>
+          <% if page.to_s == @current_page.to_s %>
+            <%= page %>
+          <% else %>
+            <%= link_to page.to_s, @contest.url + '?offset=' + ((page - 1) * @limit.to_i).to_s + '&limit=' + @limit.to_s %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  <br/>
+<% end %>
+
+<% if is_contest_finished(@contest) %>
+  <div class="div">
+    <%= form_with scope: :participant, url: '/contests/' + @contest.id.to_s + '/voices', local: true do |form| %>
+
+      <% if @participant.errors.any? %>
+        <div id="error_explanation" style="color: red">
+          <h2>
+            Hay <%= @participant.errors.count %> <%= @participant.errors.count.equal?(1) ? "error" : "errores" %>
+            en el formulario:
+          </h2>
+          <ul>
+            <% @participant.errors.messages.each do |attr, msg| %>
+              <% msg.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <h4 align="center">Quieres participar ? Registra tus datos en el formulario</h4>
+
+      <p>
+        <%= form.label :first_name, '* Nombres:' %><br/>
+        <%= form.text_field :first_name %>
+      </p>
+
+      <p>
+        <%= form.label :last_name, '* Apellidos:' %><br/>
+        <%= form.text_field :last_name %>
+      </p>
+
+      <p>
+        <%= form.label :email, '* Correo electrónico:' %><br/>
+        <%= form.email_field :email %>
+      </p>
+
+      <p>
+        <%= form.label :observations, 'Observaciones:' %><br/>
+        <%= form.text_field :observations %>
+      </p>
+
+      <p>
+        <%= form.label :attachment, '* Selecciona tu voz:' %><br/>
+        <%= form.file_field :attachment, onchange: "validateFiles(this);", data: { max_file_size: 5.megabytes } %>
+      </p>
+
+      <p style=" color: red; font-size: smaller">
+        * Campos obligatorios
+      </p>
+
+      <p>
+        <%= form.submit 'Enviar' %>
+      </p>
+
+      <p>
+        &nbsp;
+      </p>
+
+    <% end %>
+  </div>
+<% else %>
+  <div class="div" align="center">
+    <h2>El concurso ha finalizado, gracias por participar</h2>
+  </div>
+<% end %>
+
+<p>
+  &nbsp;
+</p>
+
+<script type="text/javascript">
+  function validateFiles(inputFile) {
+    jQuery(function ($) {
+      let maxExceededMessage = "El archivo de audio no debe superar los 5MB";
+      let maxFileSize = $(inputFile).data('max-file-size');
+      let sizeExceeded = false;
+
+      $.each(inputFile.files, function () {
+        if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {
+          sizeExceeded = true;
+        };
+      });
+      if (sizeExceeded) {
+        window.alert(maxExceededMessage);
+        $(inputFile).val('');
+      };
+    });
+  }
+
+  function getAudios() {
+    let myselect = document.getElementById("selectOpt");
+    window.location.href = '<%= @contest.url %>' + '?limit='
+        + myselect.options[myselect.selectedIndex].value;
+  }
+</script>
+
+<% if !@success_message.nil? %>
+  <script type="text/javascript">
+    alert("<%= @success_message %>");
+    window.location.href = '<%= @contest.url %>';
+  </script>
+<% end %>

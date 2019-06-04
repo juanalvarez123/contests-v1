@@ -1,0 +1,216 @@
+@import url(https://fonts.googleapis.com/css?family=Sniglet|Raleway:900);
+
+$color-1: #222831;
+$color-2: #393e46;
+$color-3: #00adb5;
+$color-4: #eeeeee;
+
+body, html{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Sniglet', cursive;
+  background-color: $color-1;
+  margin: 20px;
+}
+h1{
+  font-weight: normal;
+  font-size: 4em;
+  font-family: 'Raleway', sans-serif;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 500px;
+  color: $color-3;
+  text-align: center;
+}
+h2, h3 {
+  font-family: "Sniglet";
+  color: $color-3;
+}
+
+h4, h5, p {
+  font-family: "Sniglet";
+  color: $color-4;
+}
+
+/* Animation webkit */
+@-webkit-keyframes myfirst
+{
+  0% {margin-left: -235px}
+  90% {margin-left: 100%;}
+  100% {margin-left: 100%;}
+}
+
+/* Animation */
+@keyframes myfirst
+{
+  0% {margin-left: -235px}
+  70% {margin-left: 100%;}
+  100% {margin-left: 100%;}
+}
+
+.fish{
+  background-image: url('http://www.geertjanhendriks.nl/codepen/form/fish.png');
+  width: 235px;
+  height: 104px;
+  margin-left: -235px;
+  position: absolute;
+  animation: myfirst 24s;
+  -webkit-animation: myfirst 24s;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+}
+
+header{
+  height: 160px;
+  background: url('http://www.geertjanhendriks.nl/codepen/form/golf.png') repeat-x bottom;
+}
+
+#form{
+  height: 100%;
+  background-color: $color-3;
+  overflow: hidden;
+  position: relative;
+
+}
+form{
+  margin: 0 auto;
+  width: 500px;
+  padding-top: 40px;
+  color: white;
+  position: relative;
+
+
+}
+label, input, textarea{
+  display: block;
+}
+input, textarea{
+  width: 500px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  padding: 10px;
+  font-family: 'Sniglet', cursive;
+  font-size: 1em;
+  color: $color-1;
+  transition: border 0.5s;
+  -webkit-transition: border 0.5s;
+  -moz-transition: border 0.5s;
+  -o-transition: border 0.5s;
+  border: solid 3px $color-4;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+
+}
+input:focus, textarea:focus{
+  border: solid 3px $color-3;
+}
+
+textarea{
+  height: 100px;
+  resize: none;
+  overflow: auto;
+}
+input[type="submit"]{
+  background-color: $color-1;
+  color: white;
+  height: 50px;
+  cursor: pointer;
+  margin-top: 30px;
+  font-size: 1.29em;
+  font-family: 'Sniglet', cursive;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+input[type="submit"]:hover{
+  background-color: $color-3;
+
+}
+input[type="file"]{
+  color: white;
+}
+label{
+  font-size: 1.5em;
+  margin-top: 20px;
+  padding-left: 20px;
+}
+.formgroup, .formgroup-active, .formgroup-error{
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 10.5%;
+  transition: background-image 0.7s;
+  -webkit-transition: background-image 0.7s;
+  -moz-transition: background-image 0.7s;
+  -o-transition: background-image 0.7s;
+  width: 566px;
+  padding-top: 2px;
+}
+
+.formgroup{
+  background-image: url('http://www.geertjanhendriks.nl/codepen/form/pixel.gif');
+}
+.formgroup-active{
+  background-image: url('http://www.geertjanhendriks.nl/codepen/form/octo.png');
+}
+.formgroup-error{
+  background-image: url('http://www.geertjanhendriks.nl/codepen/form/octo-error.png');
+  color: red;
+}
+
+.div {
+  background-color: $color-2;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+}
+
+$primary-color: $color-3;
+$gray-color: #ddd;
+$medium-up: 600px;
+$large-up: 1000px;
+$global-radius: 4px;
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: $color-4;
+  margin: 0 0 2em;
+  border-radius: 1em;
+  thead {
+    th {
+      padding: 0.35em 0 .35em;
+      font-weight: 400;
+      text-align: left;
+      font-size: 1.25em;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $color-1;
+      td {
+        padding: 10px;
+        a {
+          color: $primary-color;
+          text-decoration: none;
+          display: inline-block;
+          margin: 0 .5em 0 0;
+          &:hover, &:active, &:focus {
+            color: darken($primary-color, 10%);
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  tfoot {
+    td {
+    }
+  }
+}

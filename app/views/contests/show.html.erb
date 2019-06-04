@@ -1,0 +1,224 @@
+<div class="row">
+  <div class="card shadow mb-4 w-100">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Detalle del concurso</h6>
+    </div>
+    <div class="card-body">
+      <div>
+        <div>
+          <div class="col-sm-3 mb-3 mb-sm-0">
+            <img alt="<%= @contest.name %>" src="<%= image_path(@contest.banner_image_name) %>" class="img-fluid float-left" style="max-width: 100%; height: 300px;"/>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="id-addon">ID</span>
+              </div>
+              <input type="text" class="form-control text-right bg-gray-100" disabled aria-describedby="id-addon" value="<%= @contest.id %>"/>
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="name-addon">Nombre</span>
+              </div>
+              <input type="text" class="form-control text-right bg-gray-100" disabled aria-describedby="name-addon" value="<%= @contest.name %>"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="date_init-addon">Fecha de inicio</span>
+              </div>
+              <input type="text" class="form-control text-right bg-gray-100" disabled aria-describedby="date_init-addon" value="<%= l @contest.date_init, format: "%d de %B de %Y a la(s) %I:%M %P %Z" %>"/>
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="date_end-addon">Fecha de finalización</span>
+              </div>
+              <input type="text" class="form-control text-right bg-gray-100" disabled aria-describedby="date_end-addon" value="<%= l @contest.date_end, format: "%d de %B de %Y a la(s) %I:%M %P %Z" %>"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="prize_amount-addon">Monto del premio</span>
+              </div>
+              <input type="text" class="form-control text-right bg-gray-100" disabled aria-describedby="prize_amount-addon" value="<%= number_to_currency(@contest.prize_amount) %>"/>
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="created_at-addon">Fecha de creación</span>
+              </div>
+              <input type="text" class="form-control text-right bg-gray-100" disabled aria-describedby="created_at-addon" value="<%= l DateService.get_created_at_COT(@contest.created_at), format: "%d de %B de %Y a la(s) %I:%M %P COT" %>"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 mb-3 mb-sm-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="contest_text-addon">Texto</span>
+              </div>
+              <textarea class="form-control text-left bg-gray-100" disabled style=" height: 139px; resize: none;" aria-describedby="contest_text-addon"><%= @contest.contest_text %></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 mb-3 mb-sm-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="recommendations-addon">Recomendaciones</span>
+              </div>
+              <textarea class="form-control text-left bg-gray-100" disabled style=" height: 139px; resize: none;" aria-describedby="recommendations-addon"><%= @contest.recommendations %></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="winner-addon">Audio ganador</span>
+              </div>
+              <input type="text" class="form-control text-right bg-gray-100" disabled aria-describedby="winner-addon" value="<%= get_winner(@contest) %>"/>
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="url-addon">URL</span>
+              </div>
+              <%= link_to @contest.url, @contest.url, target: '_blank', class: "form-control text-left", "disabled aria-describedby": "url-addon" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="card shadow mb-4 w-100">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Audios</h6>
+    </div>
+    <div class="card-body">
+      <% if !@audios.blank? %>
+        <div class="table-responsive">
+          <table class="table table-bordered small" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Email</th>
+              <th>Observaciones</th>
+              <th>Estado</th>
+              <th>Fecha de subida</th>
+              <th>Extensión original</th>
+              <th>Audio original</th>
+              <th>Audio procesado</th>
+              <th>Seleccionar ganador</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @audios.each do |audio| %>
+              <tr>
+                <td><%= audio.id %></td>
+                <td><%= audio.participant.first_name %></td>
+                <td><%= audio.participant.last_name %></td>
+                <td><%= audio.participant.email %></td>
+                <td><%= audio.observations %></td>
+                <td><%= ContestStatusService.get_status_name(audio.status) %></td>
+                <td><%= l DateService.get_created_at_COT(audio.created_at), format: "%d de %B de %Y a la(s) %I:%M %P COT" %></td>
+                <td><%= File.extname(audio.original_name) %></td>
+                <td class="text-right">
+                  <audio src="<%= audio_path('original/' + audio.original_name) %>" controls controlsList="nodownload">
+                    Tu explorador web no soporta reproducción de audios
+                  </audio>
+                  <a href="<%= audio_path('original/' + audio.original_name) %>" download="<%= get_nice_download_filename(audio, true) %>">
+                    <i class="fas fa-fw fa-file-download"></i>
+                    <span>Descargar</span>
+                  </a>
+                </td>
+                <td class="text-right">
+                  <% if audio.status.eql?(ContestStatusService.CONVERTED) %>
+                    <audio src="<%= audio_path('converted/' + audio.converted_name) %>" type="audio/mpeg" controls controlsList="nodownload">
+                      Tu explorador web no soporta reproducción de audios
+                    </audio>
+                    <a href="<%= audio_path('converted/' + audio.converted_name) %>" download="<%= get_nice_download_filename(audio, false) %>">
+                      <i class="fas fa-fw fa-file-download"></i>
+                      <span>Descargar</span>
+                    </a>
+                  <% else %>
+                    <p class="text-left"><%= ContestStatusService.get_status_description(audio.status) %></p>
+                  <% end %>
+                </td>
+                <td>
+                  <% if @contest.winner_audio_id.to_s == audio.id.to_s %>
+                    <strong>Actual ganador</strong>
+                  <% else %>
+                    <%= form_with url: '/contests/' + @contest.id.to_s + '/winner/' + audio.id.to_s, local: true do |form| %>
+                      <%= form.submit '¿Ganador?', class: "btn btn-primary" %>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            <tr>
+              <td colspan="11">
+                <select id="selectOpt" onchange="getAudios()">
+                  <% @limits_per_page.each do |limit| %>
+                    <% if limit.to_s == @limit.to_s %>
+                      <option value="<%= limit %>" selected><%= limit %></option>
+                    <% else %>
+                      <option value="<%= limit %>"><%= limit %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+                &nbsp;
+                registros por página
+                <nav class="text-right float-right">
+                  <ul class="pagination">
+                    <% @pages.each do |page| %>
+                      <li class="page-item">
+                        <% if page.to_s == @current_page.to_s %>
+                          <a class="page-link"><%= page %></a>
+                        <% else %>
+                          <%= link_to page.to_s, '/contests/' + @contest.id.to_s + '?offset=' + ((page - 1) * @limit.to_i).to_s + '&limit=' + @limit.to_s, class: "page-link" %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </nav>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="mb-4">No hay audios registrados para este concurso</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getAudios() {
+    let myselect = document.getElementById("selectOpt");
+    window.location.href = '/contests/' + <%= @contest.id.to_s %> +'?limit='
+        + myselect.options[myselect.selectedIndex].value;
+  }
+</script>

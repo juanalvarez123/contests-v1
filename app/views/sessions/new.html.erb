@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+  <div class="col-lg-6">
+    <div class="p-5">
+      <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Bienvenido a SUPER VOICES</h1>
+        <% if !@errorMessage.blank? %>
+          <div class="error-div"><%= @errorMessage %></h3>
+        <% end %>
+        </div>
+        <%= form_with scope: :user, url: login_path, local: true do |form| %>
+          <hr>
+          <div class="form-group">
+            <%= form.email_field :email, class: "form-control form-control-user", placeholder: 'Correo electrónico' %>
+          </div>
+          <div class="form-group">
+            <%= form.password_field :password, class: "form-control form-control-user", placeholder: 'Contraseña' %>
+          </div>
+          <hr>
+          <%= form.submit 'Iniciar sesión', class: 'btn btn-primary btn-user btn-block' %>
+        <% end %>
+        <hr>
+        <div class="text-center">
+          <%= link_to 'Usuario nuevo ? Registrate aquí', signin_path, class: 'small' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+  <div class="col-lg-7">
+    <div class="p-5">
+      <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Registrate en SUPER VOICES</h1>
+        <% if @user.errors.any? %>
+          <div class="error-div">
+            <p>
+            Hay <%= @user.errors.count %> <%= @user.errors.count.equal?(1) ? "error" : "errores" %>
+            en el formulario:
+            </p>
+            <ul>
+              <% @user.errors.messages.each do |attr, msg| %>
+                <% msg.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+      <%= form_with scope: :user, url: signin_path, local: true do |form| %>
+        <div class="form-group row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <%= form.text_field :first_name, class: "form-control form-control-user", placeholder: "Nombres" %>
+          </div>
+          <div class="col-sm-6">
+            <%= form.text_field :last_name, class: "form-control form-control-user", placeholder: "Apellidos" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= form.email_field :email, class: "form-control form-control-user", placeholder: "Correo electrónico" %>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <%= form.password_field :password, class: "form-control form-control-user", placeholder: "Contraseña" %>
+          </div>
+          <div class="col-sm-6">
+            <%= form.password_field :password_confirmation, class: "form-control form-control-user", placeholder: "Confirmar contraseña" %>
+          </div>
+        </div>
+        <%= form.submit 'Registrar', class: "btn btn-primary btn-user btn-block" %>
+      <% end %>
+      <hr>
+      <div class="text-center">
+        <%= link_to 'Ya tienes una cuenta ? Haz login !', login_path, class: "small" %>
+      </div>
+    </div>
+  </div>
+</div>

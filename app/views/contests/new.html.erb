@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="card shadow mb-4 w-100">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Registrar concurso</h6>
+    </div>
+    <div class="card-body">
+      <%= form_with scope: :contest, url: contests_path, local: true do |form| %>
+        <div class="form-group error-div">
+          <% if @contest.errors.any? %>
+            <div class="col-sm-12 mb-3 mb-sm-0">
+              <p>
+                Hay <%= @contest.errors.count %> <%= @contest.errors.count.equal?(1) ? "error" : "errores" %>
+                en el formulario:
+              </p>
+              <ul>
+                <% @contest.errors.messages.each do |attr, msg| %>
+                  <% msg.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <label>* Nombre</label>
+            <%= form.text_field :name, class: "form-control", placeholder: "Digita el nombre del concurso" %>
+          </div>
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <label>* Imagen</label>
+            <%= form.file_field :attachment, class: "form-control border-0" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <label>* Fecha de inicio</label>
+            <div class="input-group">
+              <%= form.date_field :date_init, class: "form-control", 'aria-describedby' => 'date_init-addon' %>
+              <div class="input-group-append">
+                <span class="input-group-text" id="date_init_addon">12:00:00 a.m.</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <label>* Fecha de finalización</label>
+            <div class="input-group">
+              <%= form.date_field :date_end, class: "form-control", 'aria-describedby' => 'date_end-addon' %>
+              <div class="input-group-append">
+                <span class="input-group-text" id="date_end-addon">11:59:59 p.m.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <label>* Monto del premio</label>
+            <%= form.number_field :prize_amount, class: "form-control", placeholder: "Cantidad monetaria que recibe el ganador" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-12 mb-3 mb-sm-0">
+            <label>* Texto</label>
+            <%= form.text_area :contest_text, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-12 mb-3 mb-sm-0">
+            <label>* Recomendaciones</label>
+            <%= form.text_area :recommendations, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <label>* URL</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="url-addon"><%= get_host %></span>
+              </div>
+              <%= form.text_field :url_id, class: "form-control", 'aria-describedby' => 'url-addon' %>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row error-div text-right">
+          <div class="col-sm-12 mb-3 mb-sm-0">
+            <p>* Campos obligatorios</p>
+          </div>
+        </div>
+        <div class="form-group row text-right">
+          <div class="col-sm-12 mb-3 mb-sm-0">
+            <%= form.submit 'Registrar concurso', class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

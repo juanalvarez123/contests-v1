@@ -1,0 +1,119 @@
+<div class="row">
+  <div class="card shadow mb-4 w-100">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Concursos</h6>
+    </div>
+    <% if !@contests.blank? %>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered small" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Fecha de inicio</th>
+              <th>Fecha de finalización</th>
+              <th>Premio</th>
+              <th>Fecha de creación</th>
+              <th>Voces registradas</th>
+              <th>URL</th>
+              <th>Ver</th>
+              <th>Editar</th>
+              <th>Borrar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @contests.each do |contest| %>
+              <tr>
+                <td><%= contest.id %></td>
+                <td><%= contest.name %></td>
+                <td><%= l contest.date_init, format: "%d de %B de %Y a la(s) %I:%M %P %Z" %></td>
+                <td><%= l contest.date_end, format: "%d de %B de %Y a la(s) %I:%M %P %Z" %></td>
+                <td><%= number_to_currency(contest.prize_amount) %></td>
+                <td><%= l DateService.get_created_at_COT(contest.created_at), format: "%d de %B de %Y a la(s) %I:%M %P COT" %></td>
+                <td><%= contest.audios.count %></td>
+                <td><%= link_to contest.url, contest.url, target: '_blank' %></td>
+                <td>
+                  <%= link_to 'Ver', contest_path(contest), class: "btn btn-primary" %>
+                </td>
+                <td>
+                  <%= link_to 'Editar', edit_contest_path(contest), class: "btn btn-secondary" %></td>
+                <td>
+                  <%= link_to 'Eliminar', "#", "data-toggle": "modal", "data-target": "#deleteModal" + contest.id.to_s, class: "btn btn-danger" %>
+                  <!-- Delete modal -->
+                  <div class="modal fade" id="deleteModal<%= contest.id %>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Eliminar concurso "<%= contest.name %>"</h5>
+                          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <% if contest.audios.blank? %>
+                            Este concurso NO tiene audios registrados y se podría eliminar sin problemas
+                          <% else %>
+                            Este concurso tiene <%= contest.audios.count %> audio(s) registrado(s) ¿Deseas eliminarlo de todas formas?
+                          <% end %>
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                          <%= form_with url: contest_path(contest), method: :delete do |form| %>
+                            <%= form.submit 'Eliminar', class: "btn btn-primary" %>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+            <tr>
+              <td colspan="11">
+                <select id="selectOpt" onchange="getContests()" class="text-left">
+                  <% @limits_per_page.each do |limit| %>
+                    <% if limit.to_s == @limit.to_s %>
+                      <option value="<%= limit %>" selected><%= limit %></option>
+                    <% else %>
+                      <option value="<%= limit %>"><%= limit %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+                &nbsp;
+                registros por página
+                <nav class="text-right float-right">
+                  <ul class="pagination">
+                    <% @pages.each do |page| %>
+                      <li class="page-item">
+                        <% if page.to_s == @current_page.to_s %>
+                          <a class="page-link"><%= page %></a>
+                        <% else %>
+                          <%= link_to page.to_s, contests_path + '?offset=' + ((page - 1) * @limit.to_i).to_s + '&limit=' + @limit.to_s, class: "page-link" %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </nav>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% else %>
+      <div class="card-body">
+        <p class="mb-4">Aún no tienes concursos registrados</p>
+        <p class="mb-4"><%= link_to 'Empieza registrando un nuevo concurso !!!', new_contest_path %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function getContests() {
+    let myselect = document.getElementById("selectOpt");
+    window.location.href = '<%= contests_path %>?limit='
+        + myselect.options[myselect.selectedIndex].value;
+  }
+</script>
