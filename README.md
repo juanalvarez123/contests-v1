@@ -5,6 +5,7 @@ This is a web application to manage contests, user's login/registration and part
 ## Version 1
 
 * Built on Ruby and Ruby on Rails.
+* Bootstrap as a front-end framework.
 * Uses local storage to store images and audios.
 * Uses a relational database.
 
